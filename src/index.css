@@ -171,6 +171,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 
 .page-wrap {
   display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: calc(1040px + var(--c6));
   margin: 0 auto;
@@ -182,9 +183,10 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   color: #fff;
 }
 .cursor {
-  width: 8px;
-  height: 8px;
+  width: 16px;
+  height: 16px;
   background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.5);
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -234,6 +236,40 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   align-items: center;
   overflow: hidden;
   transform: translateY(-250px);
+}
+
+@keyframes plate-left {
+  to {width: 2000px;}
+}
+@keyframes plate-right {
+  to {transform: translateY(0px); opacity: 1;}
+}
+.hero-plate-container {
+  position: absolute;
+  left: 34%;
+  top: 0;
+  width: 100vw;
+}
+.hero-plate-left {
+  position: absolute;
+  right: 34%;
+  top: 0;
+  width: 0px;
+  animation: plate-left 2s ease forwards;
+  height: calc(100vh - calc(var(--c13) * 2));
+  min-height: 546px;
+  background-color: #000;
+}
+.hero-plate-right {
+  transform: translateX(calc(var(--c13) * -1));
+  opacity: 0;
+  background-image: url('https://res.cloudinary.com/preston-gull/image/upload/v1649441118/hourglass-port_br7wlr.jpg');
+  height: calc(100vh - calc(var(--c13) * 1.5));
+  min-height: 600px;
+  background-position: bottom left;
+  animation: plate-right 1.7s ease forwards;
+  animation-delay: .3s;
+  background-size: cover;
 }
 
 @media only screen and (max-width: 1090px) {

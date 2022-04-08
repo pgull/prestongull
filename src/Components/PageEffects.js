@@ -16,7 +16,7 @@ const Page = ({ element }) => {
   return (
     <>
       <Cursor />
-      <div className="scroll" ref={scrollRef} data-scroll>
+      <div className="scroll" ref={scrollRef} data-scroll data-scroll-speed="3">
         {element}
       </div>
     </>
