@@ -45,6 +45,9 @@ p {
   margin-left: -.1em;
   margin-top: -.3em;
   margin-bottom: -.35em;
+  overflow: hidden;
+  flex: 1;
+  width: 100%;
 }
 h1 {
   margin: 0;
@@ -55,6 +58,9 @@ h1 {
   margin-left: -.1em;
   margin-bottom: -.2em;
   margin-top: -.1em;
+  overflow: hidden;
+  word-wrap: break-word;
+  hyphens: manual;
 }
 h1.display {
   margin: 0;
@@ -65,7 +71,8 @@ h1.display {
   margin-left: -.11em;
   margin-top: -.055em;
   margin-bottom: -.095em;
-  letter-spacing: -50%;
+  letter-spacing: -.03em;
+  overflow: hidden;
 }
 h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   content: '';
@@ -86,7 +93,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 .c-grid {
   display: grid;
   flex: 1;
-  gap: var(--c3);
+  gap: var(--c2);
   /* border: 1px solid blue; */
 }
 .c-grid.d-col-8 {
@@ -171,6 +178,9 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   box-sizing: border-box;
   padding: var(--c3);
 }
+.page-wrap.light {
+  color: #fff;
+}
 .cursor {
   width: 8px;
   height: 8px;
@@ -213,6 +223,17 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 }
 .scroll {
   min-height: 100vh;
+}
+
+.pg-logo {
+  height: 80px;
+  width: 80px;
+}
+.pg-logo-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transform: translateY(-250px);
 }
 
 @media only screen and (max-width: 1090px) {
