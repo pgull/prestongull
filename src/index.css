@@ -1,6 +1,8 @@
 html, body {
   margin: 0;
   padding: 0;
+  cursor: none;
+  background-color: #fff;
 }
 
 :root {
@@ -71,6 +73,54 @@ html, body {
 }
 .d-span-1 {
   grid-column: span 1;
+}
+
+.page-wrap {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  position: relative;
+}
+.cursor {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 100%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: all 150ms ease;
+  transition-property: background-color, opacity, transform, mix-blend-mode;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+.cursor-lag {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: all .1s ease-out;
+  transition-property: top, left, background-color, opacity, transform, mix-blend-mode;
+  will-change: top, left, background-color, opacity, transform, mix-blend-mode;
+  mix-blend-mode: difference;
+  z-index: 9999;
+}
+
+.cursor.cursor--hidden {
+  opacity: 0;
+}
+
+.cursor.cursor--link-hovered {
+  transform: translate(-50%, -50%) scale(8);
+  background-color: #fefefe;
+}
+
+.cursor.cursor--clicked {
+  transform: translate(-50%, -50%) scale(0.9);
+  background-color: #fefefe;
 }
 
 @media only screen and (max-width: 1090px) {

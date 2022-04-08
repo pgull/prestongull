@@ -9,15 +9,16 @@ import {
   Route,
 } from "react-router-dom";
 import {portfolioEntries} from './PortfolioEntries'
+import Page from './Components/PageEffects';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="*" element={<App />} />
+      <Route path="/" element={<Page element={<App />} />} />
+      <Route path="*" element={<Page element={<App />} />} />
       {Object.keys(portfolioEntries).map((key) => {
-        return <Route path={portfolioEntries[key].route} element={portfolioEntries[key].page} />
+        return <Route path={portfolioEntries[key].route} element={<Page element={portfolioEntries[key].page} />} />
       })}
     </Routes>
   </BrowserRouter>
