@@ -53,7 +53,7 @@ h1 {
   line-height: 48px;
   position: relative;
   margin-left: -.1em;
-  margin-bottom: -.13em;
+  margin-bottom: -.2em;
   margin-top: -.1em;
 }
 h1.display {
@@ -85,6 +85,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 
 .c-grid {
   display: grid;
+  flex: 1;
   gap: var(--c3);
   /* border: 1px solid blue; */
 }
@@ -127,7 +128,42 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 .d-span-1 {
   grid-column: span 1;
 }
+
+.layout {
+  display: flex;
+}
+.layout.v {
+  flex-direction: column;
+}
+.layout.h {
+  flex-direction: row;
+}
+.layout.g-1 {
+  gap: var(--c1);
+}
+.layout.g-2 {
+  gap: var(--c2);
+}
+.layout.g-3 {
+  gap: var(--c3);
+}
+.layout.g-5 {
+  gap: var(--c5);
+}
+.layout.g-8 {
+  gap: var(--c8);
+}
+.layout.g-13 {
+  gap: var(--c13);
+}
+
+
+
+
+
+
 .page-wrap {
+  display: flex;
   width: 100%;
   max-width: calc(1040px + var(--c6));
   margin: 0 auto;
