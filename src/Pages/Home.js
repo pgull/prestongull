@@ -1,27 +1,36 @@
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
+import { portfolioEntries } from "../PortfolioEntries";
 
 const Home = () => {
   return (
     <div className="page-wrap light">
-      <div className="hero-plate-container" data-scroll data-scroll-speed="5" data-scroll-position="top">
+      <div
+        className="hero-plate-container"
+        data-scroll
+        data-scroll-speed="5"
+        data-scroll-position="top"
+      >
         <div className="hero-plate-right" />
       </div>
-      {/* <div className="hero-plate-left" /> */}
+      <div className="hero-plate-left" />
       <div
         className="c-grid d-col-6"
-        style={{ marginTop: "30vh", transform: "translateY(-50%)" }}
+        data-scroll
+        data-scroll-speed="2"
+        data-scroll-position="top"
+        style={{ marginTop: "10vh", marginBottom: "30vh" }}
       >
         <br className="d-span-1" />
-        <div className="display d-span-5" style={{ textAlign: "right" }}>
+        <div className="display d-span-5">
           <h1 className="display" delay={150}>
             <Slide bottom cascade>
               Pres&shy;ton
             </Slide>
           </h1>
-          <h1 className="display">
+          <h1 className="display" style={{ textAlign: "right" }}>
             <Slide bottom cascade delay={300}>
-              –Gull
+              — Gull
             </Slide>
           </h1>
         </div>
@@ -46,11 +55,19 @@ const Home = () => {
           </p>
         </Fade>
       </div>
-      <div
-        className="c-grid d-col-6"
-        style={{ marginTop: "30vh", transform: "translateY(-50%)" }}
-      >
-        
+      <div className="layout v g-2">
+        <div className="c-grid d-col-6 work-row-header">
+          <p className="d-span-1 sans">—</p>
+          <p className="d-span-5 sans">Selected Work</p>
+        </div>
+        {Object.keys(portfolioEntries).map((key, index) => {
+          return (
+            <div className="c-grid d-col-6 work-row">
+              <p className="d-span-1">0{index + 1}</p>
+              <h1 className="d-span-5"><Slide ratio={2} bottom cascade>{key}</Slide></h1>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

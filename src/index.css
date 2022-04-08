@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   cursor: none;
   background-color: #7A7F85;
+  overflow-x: hidden;
 }
 
 @font-face {
@@ -58,7 +59,6 @@ h1 {
   margin-left: -.1em;
   margin-bottom: -.2em;
   margin-top: -.1em;
-  overflow: hidden;
   word-wrap: break-word;
   hyphens: manual;
 }
@@ -69,6 +69,7 @@ h1.display {
   line-height: 217px;
   position: relative;
   margin-left: -.11em;
+  margin-right: -.11em;
   margin-top: -.055em;
   margin-bottom: -.095em;
   letter-spacing: -.03em;
@@ -138,6 +139,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 
 .layout {
   display: flex;
+  flex: 1;
 }
 .layout.v {
   flex-direction: column;
@@ -245,12 +247,14 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   to {transform: translateY(0px); opacity: 1;}
 }
 .hero-plate-container {
+  z-index: -5;
   position: absolute;
   left: 34%;
   top: 0;
   width: 100vw;
 }
 .hero-plate-left {
+  z-index: -4;
   position: absolute;
   right: 34%;
   top: 0;
@@ -270,6 +274,22 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   animation: plate-right 1.7s ease forwards;
   animation-delay: .3s;
   background-size: cover;
+}
+hr {
+  width: 100%;
+  border: 0;
+  border-bottom: 4px solid #fff;
+}
+.work-row-header {
+  border-top: 4px solid #fff;
+  padding-top: var(--c3);
+  padding-bottom: var(--c12);
+}
+.work-row {
+  overflow: hidden;
+  border-top: 1px solid #fff;
+  padding-top: var(--c3);
+  padding-bottom: var(--c2);
 }
 
 @media only screen and (max-width: 1090px) {
