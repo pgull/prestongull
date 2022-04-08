@@ -15,8 +15,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Page element={<Home />} />} />
-      <Route path="*" element={<Page element={<Home />} />} />
+      <Route path="/" element={<Home />} />
+      <Route path="*" element={<Home />} />
       {Object.keys(portfolioEntries).map((key) => {
         return <Route path={portfolioEntries[key].route} element={<Page element={portfolioEntries[key].page} />} />
       })}
