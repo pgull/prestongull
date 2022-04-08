@@ -12,11 +12,11 @@ const Page = ({ element }) => {
       smooth: true,
     });
   });
-
+  
   return (
     <>
       <Cursor />
-      <div className="scroll" ref={scrollRef}>
+      <div className="scroll" ref={scrollRef} data-scroll>
         {element}
       </div>
     </>

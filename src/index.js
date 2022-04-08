@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Pages/Home';
+import Home from './Pages/Home';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -15,8 +15,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Page element={<App />} />} />
-      <Route path="*" element={<Page element={<App />} />} />
+      <Route path="/" element={<Page element={<Home />} />} />
+      <Route path="*" element={<Page element={<Home />} />} />
       {Object.keys(portfolioEntries).map((key) => {
         return <Route path={portfolioEntries[key].route} element={<Page element={portfolioEntries[key].page} />} />
       })}

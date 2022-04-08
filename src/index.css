@@ -2,7 +2,16 @@ html, body {
   margin: 0;
   padding: 0;
   cursor: none;
-  background-color: #fff;
+  background-color: #7A7F85;
+}
+
+@font-face {
+  font-family: 'Bodoni';
+  src: local('WTCOurBodoniW01-Regular'), url('./Font/WTC Our Bodoni W01 Regular.ttf') format('ttf');
+}
+
+* {
+  font-family: 'Bodoni', serif;
 }
 
 :root {
@@ -27,6 +36,48 @@ html, body {
   --extraLarge: 64px;
 }
 
+p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: justify;
+  position: relative;
+  margin-left: -.1em;
+  margin-top: -.3em;
+  margin-bottom: -.35em;
+}
+h1 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 52.4px;
+  line-height: 48px;
+  position: relative;
+  margin-left: -.1em;
+  margin-bottom: -.13em;
+  margin-top: -.1em;
+}
+h1.display {
+  margin: 0;
+  font-weight: normal;
+  font-size: 260px;
+  line-height: 217px;
+  position: relative;
+  margin-left: -.11em;
+  margin-top: -.055em;
+  margin-bottom: -.095em;
+  letter-spacing: -50%;
+}
+h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border: 1px solid red; */
+}
+
 
 /*****************/
 /* Grid (Desktop) /
@@ -34,6 +85,8 @@ html, body {
 
 .c-grid {
   display: grid;
+  gap: var(--c3);
+  /* border: 1px solid blue; */
 }
 .c-grid.d-col-8 {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -74,12 +127,13 @@ html, body {
 .d-span-1 {
   grid-column: span 1;
 }
-
 .page-wrap {
   width: 100%;
-  max-width: 1040px;
+  max-width: calc(1040px + var(--c6));
   margin: 0 auto;
   position: relative;
+  box-sizing: border-box;
+  padding: var(--c3);
 }
 .cursor {
   width: 8px;
@@ -92,12 +146,11 @@ html, body {
   transition: all 150ms ease;
   transition-property: background-color, opacity, transform, mix-blend-mode;
   z-index: 9999;
-  mix-blend-mode: difference;
 }
 .cursor-lag {
   width: 16px;
   height: 16px;
-  border: 2px solid #fff;
+  border: 2px solid #000;
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -105,7 +158,6 @@ html, body {
   transition: all .1s ease-out;
   transition-property: top, left, background-color, opacity, transform, mix-blend-mode;
   will-change: top, left, background-color, opacity, transform, mix-blend-mode;
-  mix-blend-mode: difference;
   z-index: 9999;
 }
 
@@ -115,12 +167,16 @@ html, body {
 
 .cursor.cursor--link-hovered {
   transform: translate(-50%, -50%) scale(8);
-  background-color: #fefefe;
+  background-color: transparent;
+  border: .5px solid #fff;
 }
 
 .cursor.cursor--clicked {
   transform: translate(-50%, -50%) scale(0.9);
   background-color: #fefefe;
+}
+.scroll {
+  min-height: 100vh;
 }
 
 @media only screen and (max-width: 1090px) {
