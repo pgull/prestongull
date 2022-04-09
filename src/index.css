@@ -193,44 +193,47 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   color: #fff;
 }
 .cursor {
-  width: var(--c5);
-  height: var(--c5);
+  width: var(--c1);
+  height: var(--c1);
   background-color: #fff;
   border: 0px solid rgba(255,255,255,0);
-  border-radius: 100%;
+  border-radius: 999px;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all 150ms ease;
+  transition: all .3s ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
   mix-blend-mode: exclusion;
+  background-image: url('https://res.cloudinary.com/preston-gull/image/upload/v1649515752/arrow-right_iqnidv.png');
+  background-position: center;
+  background-size: 150%;
 }
 .cursor-lag {
-  width: var(--c5);
-  height: var(--c5);
+  width: var(--c1);
+  height: var(--c1);
   background-color: #ff0000;
   border: 0px solid rgba(255,255,255,0);
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all 150ms ease;
+  transition: all .3s ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
   mix-blend-mode: color;
   display: none; 
 }
 .cursor-lag-2 {
-  width: var(--c5);
-  height: var(--c5);
+  width: var(--c1);
+  height: var(--c1);
   background-color: #333a42;
   border: 0px solid rgba(255,255,255,0);
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all 150ms ease;
+  transition: all .3s ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
   mix-blend-mode: luminosity;
@@ -242,10 +245,11 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 }
 
 .cursor--link-hovered {
-  transform: translate(100%, -50%);
-  background-color: rgba(255,255,255,0);
+  transform: translate(-50%, -50%) scale(5) rotate(0deg);
+  background-color: rgba(0,0,0,1);
   border: .01px solid rgba(255,255,255,0);
   mix-blend-mode: unset;
+  /* opacity: 0; */
 }
 
 .cursor--clicked {
@@ -254,6 +258,10 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 }
 .scroll {
   min-height: 100vh;
+}
+
+.top-hero {
+  transition: opacity .3s ease;
 }
 
 .pg-logo {
@@ -322,12 +330,21 @@ hr {
   border-top: 6px solid #fff;
   padding-top: var(--c3);
   padding-bottom: var(--c12);
+  transition: opacity .3s ease;
 }
 .work-row {
   overflow: hidden;
   border-top: 1px solid #fff;
   padding-top: var(--c3);
   padding-bottom: var(--c2);
+  transition: opacity .3s ease;
+}
+.unfocused {
+  opacity: 0.3;
+  mix-blend-mode: hard-light;
+}
+.work-row.focused {
+  opacity: 1;
 }
 .arrow-right {
   font-size: 20px;
@@ -349,7 +366,7 @@ hr {
   position: relative;
 }
 .arrow-right.hovered {
-  opacity: 1;
+  /* opacity: 1; */
   transform: translateX(0);
 }
 

@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 
 const Home = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
-  const scrollRef = useRef(null);
+  const scrollRef = useRef(null); 
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
@@ -28,7 +28,7 @@ const Home = () => {
             data-scroll-sticky
             style={{
               backgroundImage: `url(${portfolioEntries[key].backdropImage})`,
-              opacity: hoveredProject === portfolioEntries[key].route ? 0.7 : 0,
+              opacity: hoveredProject === portfolioEntries[key].route ? 0.5 : 0,
             }}
           />
         );
@@ -47,7 +47,7 @@ const Home = () => {
           data-scroll-speed="15"
           data-scroll-position="top"/> */}
           <div
-            className="c-grid d-col-6"
+            className={`c-grid d-col-6 top-hero ${hoveredProject && 'unfocused'}`}
             data-scroll
             data-scroll-speed="-5"
             data-scroll-position="top"
@@ -86,13 +86,13 @@ const Home = () => {
             </div>
           </div>
           <div className="layout v g-2">
-            <div className="c-grid d-col-6 work-row-header">
+            <div className={`c-grid d-col-6 work-row-header ${hoveredProject && 'unfocused'}`}>
               <p className="d-span-1 sans">—</p>
               <p className="d-span-5 sans">Selected Work</p>
             </div>
             {Object.keys(portfolioEntries).map((key, index) => {
               return (
-                <div className="c-grid d-col-6 work-row">
+                <div className={`c-grid d-col-6 work-row ${hoveredProject && 'unfocused'} ${hoveredProject && hoveredProject === portfolioEntries[key].route && 'focused'}`}>
                   <p className="d-span-1 sans">0{index + 1}</p>
                   <h1
                     className="d-span-4"
