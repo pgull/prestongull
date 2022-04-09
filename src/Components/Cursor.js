@@ -69,16 +69,29 @@ const Cursor = () => {
     "cursor--hidden": hidden,
     "cursor--link-hovered": linkHovered,
   });
-  // const cursorLagClasses = classNames("cursor-lag", {
-  //   "cursor--clicked": clicked,
-  //   "cursor--hidden": hidden,
-  //   "cursor--link-hovered": linkHovered,
-  // });
+  const cursorLagClasses = classNames("cursor-lag", {
+    "cursor--clicked": clicked,
+    "cursor--hidden": hidden,
+    "cursor--link-hovered": linkHovered,
+  });
+  const cursorLagTwoClasses = classNames("cursor-lag-2", {
+    "cursor--clicked": clicked,
+    "cursor--hidden": hidden,
+    "cursor--link-hovered": linkHovered,
+  });
 
   return (
     <>
       <div
         className={cursorClasses}
+        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      />
+      <div
+        className={cursorLagClasses}
+        style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      />
+      <div
+        className={cursorLagTwoClasses}
         style={{ left: `${position.x}px`, top: `${position.y}px` }}
       />
       {/* <div

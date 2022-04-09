@@ -2,13 +2,17 @@ html, body {
   margin: 0;
   padding: 0;
   cursor: none;
-  background-color: #7A7F85;
+  background-color: #1c2229;
   overflow-x: hidden;
 }
 
 @font-face {
   font-family: 'Bodoni';
-  src: local('WTCOurBodoniW01-Regular'), url('./Font/WTC Our Bodoni W01 Regular.ttf') format('ttf');
+  src: local('WTCOurBodoniW01-Regular'), url('./Font/WTC Our Bodoni W01 Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: local('Helvetica Bold'), url('./Font/Helvetica-Bold.ttf') format('truetype');
 }
 
 * {
@@ -49,6 +53,10 @@ p {
   overflow: hidden;
   flex: 1;
   width: 100%;
+}
+p.sans {
+  font-family: 'Helvetica', sans-serif;
+  margin-left: -.031em;
 }
 h1 {
   margin: 0;
@@ -185,10 +193,10 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   color: #fff;
 }
 .cursor {
-  width: 16px;
-  height: 16px;
-  background-color: #000;
-  border: 1px solid rgba(255,255,255,0.5);
+  width: var(--c5);
+  height: var(--c5);
+  background-color: #fff;
+  border: 0px solid rgba(255,255,255,0);
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -196,32 +204,51 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   transition: all 150ms ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
+  mix-blend-mode: exclusion;
 }
 .cursor-lag {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #000;
+  width: var(--c5);
+  height: var(--c5);
+  background-color: #ff0000;
+  border: 0px solid rgba(255,255,255,0);
   border-radius: 100%;
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all .1s ease-out;
-  transition-property: top, left, background-color, opacity, transform, mix-blend-mode;
-  will-change: top, left, background-color, opacity, transform, mix-blend-mode;
+  transition: all 150ms ease;
+  transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
+  mix-blend-mode: color;
+  display: none; 
+}
+.cursor-lag-2 {
+  width: var(--c5);
+  height: var(--c5);
+  background-color: #333a42;
+  border: 0px solid rgba(255,255,255,0);
+  border-radius: 100%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: all 150ms ease;
+  transition-property: background-color, border-color, opacity, transform;
+  z-index: 9999;
+  mix-blend-mode: luminosity;
+  display: none;
 }
 
-.cursor.cursor--hidden {
+.cursor--hidden {
   opacity: 0;
 }
 
-.cursor.cursor--link-hovered {
-  transform: translate(-50%, -50%) scale(5);
+.cursor--link-hovered {
+  transform: translate(100%, -50%);
   background-color: rgba(255,255,255,0);
-  border: .01px solid #fff;
+  border: .01px solid rgba(255,255,255,0);
+  mix-blend-mode: unset;
 }
 
-.cursor.cursor--clicked {
+.cursor--clicked {
   transform: translate(-50%, -50%) scale(0.9);
   background-color: #fefefe;
 }
@@ -240,7 +267,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   transform: translateY(-250px);
 }
 .home-backdrop {
-  transition: opacity .3s ease;
+  transition: opacity .5s ease-in-out;
   position: fixed;
   z-index: 0;
   height: 100vh;
@@ -301,6 +328,29 @@ hr {
   border-top: 1px solid #fff;
   padding-top: var(--c3);
   padding-bottom: var(--c2);
+}
+.arrow-right {
+  font-size: 20px;
+  height: var(--c5);
+  width: var(--c5);
+  background-image: url('https://res.cloudinary.com/preston-gull/image/upload/v1649515752/arrow-right_iqnidv.png');
+  border-radius: 50%;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: lighten;
+  background-position: center;
+  background-size: 150%;
+  opacity: 0;
+  transform: translateX(-64px);
+  transition: transform .3s ease, opacity .3s ease;
+  margin-bottom: -8px;
+  position: relative;
+}
+.arrow-right.hovered {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 @media only screen and (max-width: 1090px) {
