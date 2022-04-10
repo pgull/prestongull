@@ -15,10 +15,6 @@ html, body {
   src: local('Helvetica Bold'), url('./Font/Helvetica-Bold.ttf') format('truetype');
 }
 
-* {
-  font-family: 'Bodoni', serif;
-}
-
 :root {
   --c1: 8px;
   --c2: 16px;
@@ -39,6 +35,10 @@ html, body {
   --medium: 24px;
   --large: 40px;
   --extraLarge: 64px;
+}
+
+* {
+  animation-timing-function: cubic-bezier(0.5,0.5,0,1);
 }
 
 p {
@@ -67,8 +67,8 @@ h1 {
   margin-left: -.1em;
   margin-bottom: -.2em;
   margin-top: -.1em;
-  word-wrap: break-word;
   hyphens: manual;
+  font-family: 'Bodoni', sans-serif;
 }
 h1.display {
   margin: 0;
@@ -82,6 +82,7 @@ h1.display {
   margin-bottom: -.095em;
   letter-spacing: -.03em;
   overflow: hidden;
+  font-family: 'Bodoni', sans-serif;
 }
 h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   content: '';
@@ -201,11 +202,10 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all .3s ease;
+  transition: all .5s ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
   mix-blend-mode: exclusion;
-  background-image: url('https://res.cloudinary.com/preston-gull/image/upload/v1649515752/arrow-right_iqnidv.png');
   background-position: center;
   background-size: 150%;
 }
@@ -218,7 +218,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all .3s ease;
+  transition: all .5s ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
   mix-blend-mode: color;
@@ -233,7 +233,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   position: fixed;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: all .3s ease;
+  transition: all .5s ease;
   transition-property: background-color, border-color, opacity, transform;
   z-index: 9999;
   mix-blend-mode: luminosity;
@@ -245,9 +245,8 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 }
 
 .cursor--link-hovered {
-  transform: translate(-50%, -50%) scale(5) rotate(0deg);
-  background-color: rgba(0,0,0,1);
-  border: .01px solid rgba(255,255,255,0);
+  transform: translate(-50%, -50%) scale(10) rotate(0deg);
+  background-color: rgba(255,255,255,0.1);
   mix-blend-mode: unset;
   /* opacity: 0; */
 }
@@ -261,7 +260,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
 }
 
 .top-hero {
-  transition: opacity .3s ease;
+  transition: opacity .5s ease;
 }
 
 .pg-logo {
@@ -282,6 +281,7 @@ h1::after, h2::after, h3::after, h4::after, h5::after, p::after {
   width: 100vw;
   top: 0;
   left: -0;
+  background-color: rgba(0,0,0,0.2);
   background-position: center;
   background-size: cover;
 }
@@ -330,17 +330,17 @@ hr {
   border-top: 6px solid #fff;
   padding-top: var(--c3);
   padding-bottom: var(--c12);
-  transition: opacity .3s ease;
+  transition: opacity .5s ease;
 }
 .work-row {
   overflow: hidden;
   border-top: 1px solid #fff;
   padding-top: var(--c3);
   padding-bottom: var(--c2);
-  transition: opacity .3s ease;
+  transition: opacity .5s ease;
 }
 .unfocused {
-  opacity: 0.3;
+  opacity: 0.7;
   mix-blend-mode: hard-light;
 }
 .work-row.focused {
@@ -361,13 +361,54 @@ hr {
   background-size: 150%;
   opacity: 0;
   transform: translateX(-64px);
-  transition: transform .3s ease, opacity .3s ease;
+  transition: transform .5s ease, opacity .5s ease;
   margin-bottom: -8px;
   position: relative;
 }
 .arrow-right.hovered {
-  /* opacity: 1; */
+  opacity: 1;
   transform: translateX(0);
+}
+@keyframes grow {
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+.three-canvas-animator {
+  position: relative;
+  height: 90vh;
+  width: 100vw;
+  opacity: 0;
+  top: 216px;
+  animation: grow 2.5s cubic-bezier(.5,.5,0,1) forwards;
+}
+.three-canvas-container {
+  opacity: 1;
+  transform: scale(0);
+  z-index: -5;
+  position: fixed;
+  height: 90vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  transition: opacity .7s ease;
+}
+.three-canvas-container.unfocused {
+  opacity: 0;
+}
+@keyframes clip {
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+.work-table {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  animation: clip 1s cubic-bezier(.5,.5,0,1) forwards;
+  animation-delay: 1s;
+}
+.clk {
+  /* cursor: pointer; */
 }
 
 @media only screen and (max-width: 1090px) {

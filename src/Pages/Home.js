@@ -1,13 +1,38 @@
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
+import Cursor from "../Components/Cursor";
 import { portfolioEntries } from "../PortfolioEntries";
 import locomotiveScroll from "locomotive-scroll";
-import Cursor from "../Components/Cursor";
 import { useEffect, useState, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+
+const Box = (props) => {
+  // This reference gives us direct access to the THREE.Mesh object
+  const ref = useRef();
+  // Hold state for hovered and clicked events
+  // Subscribe this component to the render-loop, rotate the mesh every frame
+
+  useFrame((state, delta) => {
+    ref.current.rotation.x += 0.0009;
+    ref.current.rotation.y += 0.0009;
+  });
+  // Return the view, these are regular Threejs elements expressed in JSX
+  return (
+    <mesh {...props} ref={ref}>
+      <icosahedronBufferGeometry args={props.geometry} />
+      <meshStandardMaterial
+        wireframe={props.wireframe}
+        color={props.color}
+        wireframeLinewidth={10}
+        flatShading
+      />
+    </mesh>
+  );
+};
 
 const Home = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
-  const scrollRef = useRef(null); 
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
@@ -24,13 +49,13 @@ const Home = () => {
         return (
           <div
             className="home-backdrop"
-            data-scroll
-            data-scroll-sticky
             style={{
               backgroundImage: `url(${portfolioEntries[key].backdropImage})`,
-              opacity: hoveredProject === portfolioEntries[key].route ? 0.5 : 0,
+              opacity: hoveredProject === portfolioEntries[key].route ? 1 : 0,
             }}
-          />
+          >
+            <div className="home-backdrop" />
+          </div>
         );
       })}
       <div className="scroll-wrap" ref={scrollRef}>
@@ -46,10 +71,34 @@ const Home = () => {
         <div className="hero-plate-left" data-scroll
           data-scroll-speed="15"
           data-scroll-position="top"/> */}
+
           <div
-            className={`c-grid d-col-6 top-hero ${hoveredProject && 'unfocused'}`}
+            className={`three-canvas-container ${
+              hoveredProject && "unfocused"
+            }`}
             data-scroll
             data-scroll-speed="-5"
+            data-scroll-position="top"
+          >
+            <div className="three-canvas-animator">
+              <Canvas className="three-canvas">
+                <ambientLight color={"#4B5867"} />
+                <perspectiveCamera position={[-10, 0, 0]}/>
+                <pointLight position={[1, 1, 1]} castShadow />
+                <Box
+                  position={[-3, -0.501, 0]}
+                  geometry={[2, 0, 0]}
+                  color={"#ff0000"}
+                />
+              </Canvas>
+            </div>
+          </div>
+          <div
+            className={`c-grid d-col-6 top-hero ${
+              hoveredProject && "unfocused"
+            }`}
+            data-scroll
+            data-scroll-speed="-3"
             data-scroll-position="top"
             style={{ marginTop: "15vh", marginBottom: "25vh" }}
           >
@@ -80,19 +129,32 @@ const Home = () => {
               <Fade bottom delay={300}>
                 <p className="sans">
                   I'm a designer in many media. I am currently doing digital
-                  product design for Latitude while living in beautiful Asheville, NC, USA.
+                  product design for Latitude while living in beautiful
+                  Asheville, NC, USA.
                 </p>
               </Fade>
             </div>
           </div>
-          <div className="layout v g-2">
-            <div className={`c-grid d-col-6 work-row-header ${hoveredProject && 'unfocused'}`}>
-              <p className="d-span-1 sans">—</p>
+          <div className="layout v g-2 work-table">
+            <div
+              className={`c-grid d-col-6 work-row-header ${
+                hoveredProject && "unfocused"
+              }`}
+            >
+              <p className="d-span-1 sans">↓</p>
               <p className="d-span-5 sans">Selected Work</p>
             </div>
             {Object.keys(portfolioEntries).map((key, index) => {
               return (
-                <div className={`c-grid d-col-6 work-row ${hoveredProject && 'unfocused'} ${hoveredProject && hoveredProject === portfolioEntries[key].route && 'focused'}`}>
+                <div
+                  className={`c-grid d-col-6 work-row clk ${
+                    hoveredProject && "unfocused"
+                  } ${
+                    hoveredProject &&
+                    hoveredProject === portfolioEntries[key].route &&
+                    "focused"
+                  }`}
+                >
                   <p className="d-span-1 sans">0{index + 1}</p>
                   <h1
                     className="d-span-4"
@@ -105,7 +167,12 @@ const Home = () => {
                       {key}
                     </Slide>
                   </h1>
-                  <div className={`arrow-right ${hoveredProject === portfolioEntries[key].route && 'hovered'}`} />
+                  <div
+                    className={`arrow-right ${
+                      hoveredProject === portfolioEntries[key].route &&
+                      "hovered"
+                    }`}
+                  />
                 </div>
               );
             })}
