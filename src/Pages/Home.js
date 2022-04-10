@@ -1,6 +1,6 @@
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
-import Cursor from "../Components/Cursor";
+import Cursor from "react-animated-cursor";
 import { portfolioEntries } from "../PortfolioEntries";
 import locomotiveScroll from "locomotive-scroll";
 import { useEffect, useState, useRef } from "react";
@@ -46,7 +46,7 @@ const Home = () => {
   return (
     <>
       <Frame />
-      <Cursor />
+      <Cursor color='255,255,255' clickables={['.clk']}/>
       {Object.keys(portfolioEntries).map((key) => {
         return (
           <div
