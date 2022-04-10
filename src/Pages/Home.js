@@ -25,7 +25,7 @@ const Box = (props) => {
         wireframe={props.wireframe}
         color={props.color}
         wireframeLinewidth={10}
-        flatShading
+        flatShading={!props.wireframe}
       />
     </mesh>
   );
@@ -84,12 +84,25 @@ const Home = () => {
           >
             <div className="three-canvas-animator">
               <Canvas className="three-canvas">
-                <ambientLight color={"#1D2228"} intensity={7}/>
+                <ambientLight color={"red"} intensity={0.5}/>
                 <perspectiveCamera position={[-10, 0, 0]}/>
-                <pointLight position={[1, 1, 1]} castShadow />
+                <pointLight position={[1, 1, 1]} intensity={2} castShadow />
                 <Box
                   position={[-3, -0.501, 0]}
+                  wireframe
                   geometry={[2, 0, 0]}
+                  color={"orange"}
+                />
+                <Box
+                  position={[-3, -0.501, 0]}
+                  wireframe
+                  geometry={[1.999, 0, 0]}
+                  color={"orange"}
+                />
+                <Box
+                  position={[-3, -0.501, 0]}
+                  wireframe
+                  geometry={[1.99, 0, 0]}
                   color={"orange"}
                 />
               </Canvas>
@@ -106,12 +119,12 @@ const Home = () => {
           >
             <br className="d-span-1" />
             <div className="display d-span-5">
-              <h1 className="display">
+              <h1 className="display" style={{letterSpacing: '-0.06em'}}>
                 <Slide bottom cascade delay={300}>
                   Pres&shy;ton
                 </Slide>
               </h1>
-              <h1 className="display" style={{ textAlign: "right" }}>
+              <h1 className="display" style={{ textAlign: "right", letterSpacing: '-0.1em', marginRight: '-0.045em', paddingRight: '8px' }}>
                 <Slide bottom cascade delay={400}>
                   —Gull
                 </Slide>
@@ -149,7 +162,7 @@ const Home = () => {
             {Object.keys(portfolioEntries).map((key, index) => {
               return (
                 <div
-                  className={`c-grid d-col-6 work-row clk ${
+                  className={`c-grid d-col-6 work-row ${
                     hoveredProject && "unfocused"
                   } ${
                     hoveredProject &&
@@ -159,7 +172,7 @@ const Home = () => {
                 >
                   <p className="d-span-1 sans">0{index + 1}</p>
                   <h1
-                    className="d-span-4"
+                    className="d-span-4 clk"
                     onMouseEnter={() =>
                       setHoveredProject(portfolioEntries[key].route)
                     }

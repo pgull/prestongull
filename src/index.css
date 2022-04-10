@@ -2,8 +2,9 @@ html, body {
   margin: 0;
   padding: 0;
   cursor: none;
-  background-color: #1c2229;
-  overflow-x: hidden;
+  background-color: #000;
+  overflow: hidden;
+  max-height: 100vh;
 }
 
 @font-face {
@@ -407,6 +408,7 @@ hr {
   clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
   animation: clip 1s cubic-bezier(.5,.5,0,1) forwards;
   animation-delay: 1s;
+  padding-bottom: var(--c13);
 }
 .clk {
   /* cursor: pointer; */
