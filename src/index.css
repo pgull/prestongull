@@ -39,6 +39,7 @@ html, body {
 
 * {
   animation-timing-function: cubic-bezier(0.5,0.5,0,1);
+  font-family: 'Helvetica', sans-serif;
 }
 
 p {
@@ -386,7 +387,7 @@ hr {
 .three-canvas-container {
   opacity: 1;
   transform: scale(0);
-  z-index: -5;
+  z-index: -10;
   position: fixed;
   height: 90vh;
   width: 100vw;
@@ -409,6 +410,28 @@ hr {
 }
 .clk {
   /* cursor: pointer; */
+}
+
+.frame-link {
+  position: fixed;
+  z-index: 2;
+  word-break: keep-all;
+  font-family: 'helvetica', serif;
+  color: #fff;
+  padding: var(--c5);
+  letter-spacing: .5em;
+  top: 50%;
+  transform: translateY(-50%);
+  text-orientation: mixed;
+}
+.frame-link.left {
+  writing-mode: vertical-lr;
+  left: 0;
+}
+.frame-link.right {
+  right: 0;
+  writing-mode: vertical-rl;
+  
 }
 
 @media only screen and (max-width: 1090px) {

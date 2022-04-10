@@ -58,7 +58,7 @@ const Cursor = () => {
   };
 
   const handleLinkHoverEvents = () => {
-    document.querySelectorAll(".work-row h1").forEach((el) => {
+    document.querySelectorAll(".clk").forEach((el) => {
       el.addEventListener("mouseover", () => setLinkHovered(true));
       el.addEventListener("mouseout", () => setLinkHovered(false));
     });

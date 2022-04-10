@@ -5,6 +5,7 @@ import { portfolioEntries } from "../PortfolioEntries";
 import locomotiveScroll from "locomotive-scroll";
 import { useEffect, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import Frame from "../Components/Frame";
 
 const Box = (props) => {
   // This reference gives us direct access to the THREE.Mesh object
@@ -44,6 +45,7 @@ const Home = () => {
 
   return (
     <>
+      <Frame />
       <Cursor />
       {Object.keys(portfolioEntries).map((key) => {
         return (
@@ -82,13 +84,13 @@ const Home = () => {
           >
             <div className="three-canvas-animator">
               <Canvas className="three-canvas">
-                <ambientLight color={"#4B5867"} />
+                <ambientLight color={"#1D2228"} intensity={7}/>
                 <perspectiveCamera position={[-10, 0, 0]}/>
                 <pointLight position={[1, 1, 1]} castShadow />
                 <Box
                   position={[-3, -0.501, 0]}
                   geometry={[2, 0, 0]}
-                  color={"#ff0000"}
+                  color={"orange"}
                 />
               </Canvas>
             </div>
@@ -111,7 +113,7 @@ const Home = () => {
               </h1>
               <h1 className="display" style={{ textAlign: "right" }}>
                 <Slide bottom cascade delay={400}>
-                  — Gull
+                  —Gull
                 </Slide>
               </h1>
             </div>
